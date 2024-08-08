@@ -43,20 +43,20 @@ if st.button('Classify'):
         # Make prediction
         prediction = model.predict(input_vector_dense)
         if prediction[0] == 0.0:
-            st.write("Prediction Category: Biashara")
-            st.write("Prediction Category: Business")
+            st.write("News Article Category: Biashara")
+            st.write("News Article Category: Business")
         elif prediction[0] == 1.0:
-            st.write("Prediction Category: Burudani")
-            st.write("Prediction Category: Entertainment")
+            st.write("News Article Category: Burudani")
+            st.write("News Article Category: Entertainment")
         elif prediction[0] == 2.0:
-            st.write("Prediction Category: Kimataifa")
-            st.write("Prediction Category: International")
+            st.write("News Article Category: Kimataifa")
+            st.write("News Article Category: International")
         elif prediction[0] == 3.0:
-            st.write("Prediction Category: Kitaifa")
-            st.write("Prediction Category: National")
+            st.write("News Article Category: Kitaifa")
+            st.write("News Article Category: National")
         elif prediction[0] == 4.0:
-            st.write("Prediction Category: Michezo")
-            st.write("Prediction Category: Sports")
+            st.write("News Article Category: Michezo")
+            st.write("News Article Category: Sports")
     except Exception as e:
         st.write("Error during prediction:", str(e))
         st.write("Input shape:", input_vector.shape)
