@@ -34,29 +34,32 @@ input_data['content'] = st.text_area(label='News Contents', height=350, help='En
 # Predict button
 if st.button('Classify'):
     try:
-        # Transform the input text using the loaded vectorizer
-        input_vector = vectorizer.transform([input_data['content']])
+        if input_data['content'] == '':
+            st.write("Classification cannot run for blank text")
+        else:
+            # Transform the input text using the loaded vectorizer
+            input_vector = vectorizer.transform([input_data['content']])
 
-        # Convert to dense array and ensure float32 data type
-        input_vector_dense = input_vector.toarray().astype(np.float32)
+            # Convert to dense array and ensure float32 data type
+            input_vector_dense = input_vector.toarray().astype(np.float32)
 
-        # Make prediction
-        prediction = model.predict(input_vector_dense)
-        if prediction[0] == 0.0:
-            st.write("News Article Category (Swahili): Biashara")
-            st.write("News Article Category: Business")
-        elif prediction[0] == 1.0:
-            st.write("News Article Category (Swahili): Burudani")
-            st.write("News Article Category: Entertainment")
-        elif prediction[0] == 2.0:
-            st.write("News Article Category (Swahili): Kimataifa")
-            st.write("News Article Category: International")
-        elif prediction[0] == 3.0:
-            st.write("News Article Category (Swahili): Kitaifa")
-            st.write("News Article Category: National")
-        elif prediction[0] == 4.0:
-            st.write("News Article Category (Swahili): Michezo")
-            st.write("News Article Category: Sports")
+            # Make prediction
+            prediction = model.predict(input_vector_dense)
+            if prediction[0] == 0.0:
+                st.write("News Article Category (Swahili): Biashara")
+                st.write("News Article Category: Business")
+            elif prediction[0] == 1.0:
+                st.write("News Article Category (Swahili): Burudani")
+                st.write("News Article Category: Entertainment")
+            elif prediction[0] == 2.0:
+                st.write("News Article Category (Swahili): Kimataifa")
+                st.write("News Article Category: International")
+            elif prediction[0] == 3.0:
+                st.write("News Article Category (Swahili): Kitaifa")
+                st.write("News Article Category: National")
+            elif prediction[0] == 4.0:
+                st.write("News Article Category (Swahili): Michezo")
+                st.write("News Article Category: Sports")
     except Exception as e:
         st.write("Error during prediction:", str(e))
         st.write("Input shape:", input_vector.shape)
