@@ -19,7 +19,7 @@ st.title('Swahili News Category Classification')
 input_data = {}
 
 st.sidebar.header('Swahili News Classification')
-st.sidebar.image('blossom.jpeg')
+st.sidebar.image('blossom2.jpeg')
 st.sidebar.divider()
 st.sidebar.subheader('Basic Interactions')
 st.sidebar.markdown('''
