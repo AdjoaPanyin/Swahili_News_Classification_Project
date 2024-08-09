@@ -27,6 +27,16 @@ st.sidebar.markdown('''
     + Click on the Classify button.
     + View your news classification in the result area below.                                
 ''')
+st.sidebar.divider()
+st.sidebar.subheader('Classification Boundaries')
+st.sidebar.markdown('''
+    The model only classifies in 5 categories:
+    + National
+    + International
+    + Sports
+    + Business
+    + Entertainment                                
+''')
 
 # Creating input boxes for each feature
 input_data['content'] = st.text_area(label='News Contents', height=350, help='Enter your news content here')
