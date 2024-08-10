@@ -37,9 +37,30 @@ st.sidebar.markdown('''
     + Business
     + Entertainment                                
 ''')
+st.sidebar.divider()
+st.sidebar.subheader('Project Contributors')
+st.sidebar.markdown('''
+    + [Adjoa Panyin Kuwornu](https://www.linkedin.com/in/adjoapanyinkuwornu/)
+    + [Abigail Sapong](https://www.linkedin.com/in/abigail-sapong/)
+    + [Simon Odjam](https://www.linkedin.com/in/simon-n-odjam-a50a20178/)
+    + [Samuel Efosa-Austin](https://www.linkedin.com/in/samuelobeghe/)
+    + [Chigozie Paschal Okafor](http://linkedin.com/in/chigozie-paschal-okafor-itil-346967122)
+    + [Japhthah Boateng](https://www.linkedin.com/in/jephthah-boateng/)          
+    + [Hemeedah Ibrahim Lawal](https://www.linkedin.com/in/hameedah-lawal-61088510b)
+    + [Enoch Boateng](https://www.linkedin.com/in/enoch-boateng)
+    + [Ezinne Okoro](https://www.linkedin.com/in/okoro-ezinne-15068728b/)
+    + [Ahmad Bilesanmi](https://www.linkedin.com/in/bilesanmi-olorunfemi/)                             
+''')
 
 # Creating input boxes for each feature
 input_data['content'] = st.text_area(label='News Contents', height=350, help='Enter your news content here')
+news_classes = {
+    0.0: ["Biashara", "Business"],
+    1.0: ["Burudani", "Entertainment"],
+    2.0: ["Kimataifa", "International"],
+    3.0: ["Kitaifa", "National"],
+    4.0: ["Michezo", "Sports"]
+}
 
 # Predict button
 if st.button('Classify'):
@@ -55,21 +76,8 @@ if st.button('Classify'):
 
             # Make prediction
             prediction = model.predict(input_vector_dense)
-            if prediction[0] == 0.0:
-                st.write("News Article Category (Swahili): Biashara")
-                st.write("News Article Category: Business")
-            elif prediction[0] == 1.0:
-                st.write("News Article Category (Swahili): Burudani")
-                st.write("News Article Category: Entertainment")
-            elif prediction[0] == 2.0:
-                st.write("News Article Category (Swahili): Kimataifa")
-                st.write("News Article Category: International")
-            elif prediction[0] == 3.0:
-                st.write("News Article Category (Swahili): Kitaifa")
-                st.write("News Article Category: National")
-            elif prediction[0] == 4.0:
-                st.write("News Article Category (Swahili): Michezo")
-                st.write("News Article Category: Sports")
+            st.write("News Article Category (Swahili): " + news_classes[prediction[0]][0])
+            st.write("News Article Category: " + news_classes[prediction[0]][1])
     except Exception as e:
         st.write("Error during prediction:", str(e))
         st.write("Input shape:", input_vector.shape)
